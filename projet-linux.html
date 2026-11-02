@@ -3,36 +3,132 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Porjet linux - Mon entreprise</title>
+  <title>Projet Linux - Mon entreprise</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
     <a class="logo" href="index.html">Mon entreprise</a>
+
     <nav>
       <ul>
         <li>
           <a href="#">Projets</a>
           <div class="mega">
             <div class="mega-inner">
-              <a class="card" href="projet-site-web.html"><div class="visuel">&lt;/&gt;</div><h3>Site web</h3><span>Découvrir</span></a>
-              <a class="card" href="projet-linux.html"><div class="visuel">&gt;_</div><h3>Projet Linux</h3><span>Découvrir</span></a>
-              <a class="card" href="projet-reseau.html"><div class="visuel">[ ]</div><h3>Gestion de réseau</h3><span>Découvrir</span></a>
+              <a class="card" href="projet-site-web.html">
+                <div class="visuel">&lt;/&gt;</div>
+                <h3>Site web</h3>
+                <span>Découvrir</span>
+              </a>
+              <a class="card" href="projet-linux.html">
+                <div class="visuel">&gt;_</div>
+                <h3>Projet Linux</h3>
+                <span>Découvrir</span>
+              </a>
+              <a class="card" href="projet-reseau.html">
+                <div class="visuel">[ ]</div>
+                <h3>Gestion de réseau</h3>
+                <span>Découvrir</span>
+              </a>
             </div>
           </div>
         </li>
-        <li><a href="index.html#services">Services</a></li>
-        <li><a href="index.html#services">Contact</a></li>
+
+        <li>
+          <a href="#">Services</a>
+          <div class="mega">
+            <div class="mega-inner">
+              <div class="card">
+                <div class="visuel">www</div>
+                <h3>Sites web</h3>
+                <p>Sites vitrines modernes et rapides.</p>
+              </div>
+              <div class="card">
+                <div class="visuel">{ }</div>
+                <h3>Logiciels</h3>
+                <p>Outils sur mesure pour ton activité.</p>
+              </div>
+              <div class="card">
+                <div class="visuel">IA</div>
+                <h3>Conseil</h3>
+                <p>Réseau, systèmes et intelligence artificielle.</p>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li><a href="mailto:contact@exemple.fr">Contact</a></li>
       </ul>
     </nav>
+
     <div></div>
   </header>
 
-  <main class="projet">
-    <h1>Gestion de <em>vm</em> </h1>
-    <p>Description du projet à venir.</p>
-    <a class="bouton" href="index.html">Retour à l'accueil</a>
+  <main class="detail">
+    <h1>Serveur <em>Linux</em> sécurisé</h1>
+    <p class="intro">Installation et sécurisation d'un serveur web Debian sur une machine virtuelle.</p>
+
+    <div class="tags">
+      <span>Debian 13</span><span>VirtualBox</span><span>nginx</span>
+      <span>UFW</span><span>fail2ban</span><span>SSH</span><span>cron</span>
+    </div>
+
+    <figure>
+      <img src="images/00-vue-ensemble.png" alt="Machine virtuelle Debian et connexion SSH depuis Windows">
+      <figcaption>Le serveur Debian dans VirtualBox, administré en SSH depuis Windows.</figcaption>
+    </figure>
+
+    <h2>Objectif</h2>
+    <p>Mettre en place un serveur web Linux complet, de l'installation à la sécurisation, comme on le ferait pour un client : seuls les services utiles sont accessibles, les attaques sont bloquées et les données sont sauvegardées automatiquement.</p>
+
+    <h2>1. Installation de Debian en mode serveur</h2>
+    <p>J'ai créé une machine virtuelle sous VirtualBox (2 Go de mémoire, 2 processeurs, 20 Go de disque) et installé Debian 13 sans interface graphique, avec seulement le serveur SSH et les utilitaires système, pour garder un système léger.</p>
+    
+    <h2>2. Serveur web nginx</h2>
+    <p>J'ai installé nginx avec <code>sudo apt install nginx</code>, puis ajouté une redirection de port dans VirtualBox pour afficher la page du serveur depuis Windows.</p>
+    <figure>
+      <img src="images/02-nginx.png" alt="Page d'accueil de nginx">
+      <figcaption>Le serveur répond depuis mon navigateur.</figcaption>
+    </figure>
+
+    <h2>3. Pare-feu UFW</h2>
+    <p>Le pare-feu bloque tout sauf le SSH (port 22) pour l'administration et le web (port 80).</p>
+    <figure>
+      <img src="images/03-ufw.png" alt="Statut du pare-feu UFW">
+      <figcaption>Seuls les ports 22 et 80 sont autorisés.</figcaption>
+    </figure>
+
+    <h2>4. Protection contre les attaques : fail2ban</h2>
+    <p>Fail2ban surveille les connexions SSH et bannit automatiquement les adresses qui multiplient les échecs d'authentification.</p>
+    <figure>
+      <img src="images/04-fail2ban.png" alt="Statut de fail2ban">
+      <figcaption>La protection SSH est active.</figcaption>
+    </figure>
+
+    <h2>5. Connexion SSH par clé</h2>
+    <p>J'ai créé une clé ed25519, désactivé l'authentification par mot de passe et interdit la connexion en root. Un essai avec mot de passe est maintenant refusé.</p>
+    <figure>
+      <img src="images/05-ssh.png" alt="Connexion SSH par mot de passe refusée">
+      <figcaption>Seule ma clé permet de se connecter.</figcaption>
+    </figure>
+
+    <h2>6. Sauvegarde automatique</h2>
+    <p>Un script archive le site et la configuration nginx. Il est lancé chaque nuit à 2 h par cron, et il garde les 7 dernières sauvegardes.</p>
+    <figure>
+      <img src="images/06-sauvegarde.png" alt="Script de sauvegarde et archive créée">
+      <figcaption>Le script et l'archive générée.</figcaption>
+    </figure>
+    <figure>
+      <img src="images/07-crontab.png" alt="Tâche cron de sauvegarde">
+      <figcaption>La tâche programmée avec cron.</figcaption>
+    </figure>
+
+    <h2>Ce que j'ai appris</h2>
+    <p>Administrer un serveur Linux en ligne de commande, appliquer le principe du moindre privilège (peu de ports ouverts, pas de root, pas de mot de passe SSH) et automatiser des tâches de maintenance.</p>
+
+    <p><a class="bouton" href="index.html">Retour à l'accueil</a></p>
   </main>
 
 </body>

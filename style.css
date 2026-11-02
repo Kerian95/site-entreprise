@@ -83,3 +83,24 @@ nav li:focus-within .mega { visibility: visible; opacity: 1; transform: none; }
 .projet h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 16px; }
 .projet h1 em { font-style: normal; color: var(--vert); }
 .projet p { max-width: 600px; margin: 0 auto 32px; color: #c9cbcf; }
+
+/* ---------- Pages de projet détaillées ---------- */
+.detail {
+  background: var(--noir);
+  color: #c9cbcf;
+  min-height: calc(100vh - 64px);
+  padding: 72px max(24px, calc((100% - 820px) / 2)) 96px;
+}
+.detail h1 { color: var(--blanc); font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.1; margin-bottom: 12px; }
+.detail h1 em { font-style: normal; color: var(--vert); }
+.detail .intro { font-size: 1.15rem; margin-bottom: 24px; }
+.detail h2 { color: var(--blanc); font-size: 1.4rem; margin: 56px 0 12px; padding-left: 14px; border-left: 3px solid var(--vert); }
+.detail p { line-height: 1.7; margin-bottom: 16px; }
+.detail code { background: #1c1d20; color: var(--vert); padding: 2px 8px; border-radius: 4px; font-family: Consolas, monospace; }
+
+.detail figure { margin: 24px 0; }
+.detail img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #2a2b2f; }
+.detail figcaption { margin-top: 10px; font-size: 0.9rem; color: #8b8e94; text-align: center; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 40px; }
+.tags span { border: 1px solid var(--vert); color: var(--vert); padding: 6px 14px; border-radius: 999px; font-size: 0.85rem; }
